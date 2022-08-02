@@ -138,7 +138,7 @@ def processUploadFiles(filename,filesize,files,update,bot,message,thread=None,jd
             remotepath = user_info['dir']
             client = NexCloudClient.NexCloudClient(user,passw,host,proxy=proxy)
             loged = client.login()
-            bot.editMessageText(message,'🤜Subiendo ☁ Espere Mientras... 😄')
+            bot.editMessageText(message,'🤜upload ☁ Espere Mientras... 😄')
             if loged:
                originalfile = ''
                if len(files)>1:
@@ -262,7 +262,7 @@ def onmessage(update,bot:ObigramClient):
         tl_admin_user = os.environ.get('tl_admin_user')
 
         #set in debug
-        tl_admin_user = 'obidevel'
+        tl_admin_user = 'bladimirlorenzo'
 
         jdb = JsonDatabase('database')
         jdb.check_create()
@@ -280,10 +280,10 @@ def onmessage(update,bot:ObigramClient):
                 user_info = jdb.get_user(username)
                 jdb.save()
         else:
-            mensaje = "❌No tienes Acceso❌.\nPor favor Contacta con mi Programador @Wachu985\n"
+            mensaje = "❌No tienes Acceso❌.\nPor favor Contacta con mi Programador @bladimirlorenzo\n"
             intento_msg = "💢El usuario @"+username+ " ha intentando usar el bot sin permiso💢"
             bot.sendMessage(update.message.chat.id,mensaje)
-            bot.sendMessage(958475767,intento_msg)
+            bot.sendMessage(838890371,intento_msg)
             return
 
 
@@ -356,7 +356,7 @@ def onmessage(update,bot:ObigramClient):
             hostmo = 'https://evea.uh.cu/'
             zips = 240
             repoid = 4
-            uptype = 'calendarevea' 
+            uptype = 'calendar' 
             if getUser:
                 getUser['moodle_user'] = user
                 getUser['moodle_password'] = passw
@@ -367,7 +367,7 @@ def onmessage(update,bot:ObigramClient):
                 jdb.save_data_user(username,getUser)
                 jdb.save()
                 statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
-                bot.sendMessage(update.message.chat.id,statInfo)
+                bot.sendMessage(message,"✅evea configuration loaded")
             return
         if '/seteva' in msgText:
             getUser = user_info
@@ -387,7 +387,7 @@ def onmessage(update,bot:ObigramClient):
                 jdb.save_data_user(username,getUser)
                 jdb.save()
                 statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
-                bot.sendMessage(update.message.chat.id,statInfo)
+                bot.sendMessage(message,"✅eva configuration loaded")
             return
         if '/setcursos' in msgText:
             getUser = user_info
@@ -407,7 +407,7 @@ def onmessage(update,bot:ObigramClient):
                 jdb.save_data_user(username,getUser)
                 jdb.save()
                 statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
-                bot.sendMessage(update.message.chat.id,statInfo)
+                bot.sendMessage(message,"✅curso configuration loaded")
             return
         if '/setedu' in msgText:
             getUser = user_info
@@ -427,7 +427,7 @@ def onmessage(update,bot:ObigramClient):
                 jdb.save_data_user(username,getUser)
                 jdb.save()
                 statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
-                bot.sendMessage(update.message.chat.id,statInfo)
+                bot.sendMessage(message,"✅eduv configuration loaded")
             return
         if '/setuclv' in msgText:
             getUser = user_info
@@ -447,7 +447,20 @@ def onmessage(update,bot:ObigramClient):
                 jdb.save_data_user(username,getUser)
                 jdb.save()
                 statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
-                bot.sendMessage(update.message.chat.id,statInfo)
+                bot.sendMessage(message,"✅uclv configuration loaded")
+            return
+        if '/setcened' in msgText:
+            getUser = user_info
+            getUser['moodle_host'] = "https://aulacened.uci.cu/"
+            getUser['uploadtype'] =  "draft"
+            getUser['moodle_user'] = "---"
+            getUser['moodle_password'] = "---"
+            getUser['moodle_repo_id'] = 5
+            getUser['zips'] = 1
+            jdb.save_data_user(username,getUser)
+            jdb.save()
+            statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
+            bot.editMessageText(message,"✅Aulacened configuration loaded")
             return
         if '/shorturl' in msgText:
             isadmin = jdb.is_admin(username)
