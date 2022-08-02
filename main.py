@@ -255,7 +255,7 @@ def onmessage(update,bot:ObigramClient):
     try:
         thread = bot.this_thread
         username = update.message.sender.username
-        #tl_admin_user = os.environ.get('tl_admin_user')
+        tl_admin_user = os.environ.get('tl_admin_user')
 
         #set in debug
         tl_admin_user = 'bladimirlorenzo'
@@ -457,7 +457,7 @@ def onmessage(update,bot:ObigramClient):
             jdb.save()
             statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
             bot.editMessageText(message,"✅Aulacened configuration loaded")
-            return
+          return
         if '/setposg' in msgText:
             getUser = user_info
             getUser['moodle_host'] = "https://posgrado.unica.cu/"
@@ -470,7 +470,7 @@ def onmessage(update,bot:ObigramClient):
             jdb.save()
             statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
             bot.editMessageText(message,"✅Posgrado unica configuration loaded")
-            return
+          return
             if '/setuvs' in msgText:
             getUser = user_info
             getUser['moodle_host'] = "https://uvs.ucm.cmw.sld.cu/"
@@ -483,7 +483,7 @@ def onmessage(update,bot:ObigramClient):
             jdb.save()
             statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
             bot.editMessageText(message,"✅UVS configuration loaded")
-            return
+         return
         if '/shorturl' in msgText:
             isadmin = jdb.is_admin(username)
             if isadmin:
@@ -748,18 +748,18 @@ def onmessage(update,bot:ObigramClient):
         thread.store('msg',message)
 
        if '/start' in msgText:
-            start_msg = '📦 tguploaderV10 ⛩\n\n'
-            start_msg+= '👤╭─────👋🏻 @' + str(username)+'\n│\n'
-            start_msg+= '1️⃣├ /setuclv\n'
-            start_msg+= '2️⃣├ /seteva\n'
-            start_msg+= '3️⃣├ /setcursos\n'
-            start_msg+= '4️⃣├ /setposg\n'              
-            start_msg+= '5️⃣├ /setcened\n'
-            start_msg+= '6️⃣├ /setedu\n'
-            start_msg+= '7️⃣├ /setuvs\n'
+           start_msg = '📦 tguploaderV10 ⛩\n\n'
+           start_msg+= '👤╭─────👋🏻 @' + str(username)+'\n│\n'
+           start_msg+= '1️⃣├ /setuclv\n'
+           start_msg+= '2️⃣├ /seteva\n'
+           start_msg+= '3️⃣├ /setcursos\n'
+           start_msg+= '4️⃣├ /setposg\n'              
+           start_msg+= '5️⃣├ /setcened\n'
+           start_msg+= '6️⃣├ /setedu\n'
+           start_msg+= '7️⃣├ /setuvs\n'
            start_msg+= '🦾╰Que disfutes del bot🎐\n'
-            bot.editMessageText(message,start_msg)
-        elif '/token' in msgText:
+           bot.editMessageText(message,start_msg)
+       elif '/token' in msgText:
             message2 = bot.editMessageText(message,'Obteniendo Token...')
             try:
                 proxy = ProxyCloud.parse(user_info['proxy'])
