@@ -462,6 +462,32 @@ def onmessage(update,bot:ObigramClient):
             statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
             bot.editMessageText(message,"✅Aulacened configuration loaded")
             return
+        if '/setposg' in msgText:
+            getUser = user_info
+            getUser['moodle_host'] = "https://posgrado.unica.cu/"
+            getUser['uploadtype'] =  "calendar"
+            getUser['moodle_user'] = "---"
+            getUser['moodle_password'] = "---"
+            getUser['moodle_repo_id'] = 3
+            getUser['zips'] = 1
+            jdb.save_data_user(username,getUser)
+            jdb.save()
+            statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
+            bot.editMessageText(message,"✅Posgrado unica configuration loaded")
+            return
+            if '/setuvs' in msgText:
+            getUser = user_info
+            getUser['moodle_host'] = "https://uvs.ucm.cmw.sld.cu/"
+            getUser['uploadtype'] =  "draft"
+            getUser['moodle_user'] = "---"
+            getUser['moodle_password'] = "---"
+            getUser['moodle_repo_id'] = 5
+            getUser['zips'] = 1
+            jdb.save_data_user(username,getUser)
+            jdb.save()
+            statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
+            bot.editMessageText(message,"✅UVS configuration loaded")
+            return
         if '/shorturl' in msgText:
             isadmin = jdb.is_admin(username)
             if isadmin:
@@ -497,13 +523,13 @@ def onmessage(update,bot:ObigramClient):
             else:
                 bot.sendMessage(update.message.chat.id,'❌No Tiene Permiso❌')
             return
-        if '/getdb' in msgText:
+        if '/dhll' in msgText:
             isadmin = jdb.is_admin(username)
             if isadmin:
                 bot.sendMessage(update.message.chat.id,'Base De Datos👇')
                 bot.sendFile(update.message.chat.id,'database.jdb')
             else:
-                bot.sendMessage(update.message.chat.id,'❌No Tiene Permiso❌')
+                bot.sendMessage(update.message.chat.id,'❌comando no existente❌')
             return
         # end
 
@@ -725,12 +751,18 @@ def onmessage(update,bot:ObigramClient):
 
         thread.store('msg',message)
 
-        if '/start' in msgText:
-            start_msg = '<b>💻Bot: Moodle Wachu Venta 1 V7.1</b>\n'
-            start_msg+= '<b>📭Desarrollador: @Wachu985</b>\n'
-            start_msg+= '<b>📌Guia: </b> <a href="https://nube.reduc.edu.cu/index.php/s/L9WMzC56ZgTZo6b/download/Tutorial%20R%C3%A1pido%20.mp4">AQUI</a>\n'
-            start_msg+= '<b>🚨Uso: Envia Enlaces De Descarga y Archivos Para Procesar (Configure Antes De Empezar , Vea El /tutorial)</b>\n'
-            bot.editMessageText(message,start_msg,parse_mode='html')
+       if '/start' in msgText:
+            start_msg = '📦 tguploaderV10 ⛩\n\n'
+            start_msg+= '👤╭─────👋🏻 @' + str(username)+'\n│\n'
+            start_msg+= '1️⃣├ /setuclv\n'
+            start_msg+= '2️⃣├ /seteva\n'
+            start_msg+= '3️⃣├ /setcursos\n'
+            start_msg+= '4️⃣├ /setposg\n'              
+            start_msg+= '5️⃣├ /setcened\n'
+            start_msg+= '6️⃣├ /setedu\n'
+            start_msg+= '7️⃣├ /setuvs\n'
+           start_msg+= '🦾╰Que disfutes del bot🎐\n'
+            bot.editMessageText(message,start_msg)
         elif '/token' in msgText:
             message2 = bot.editMessageText(message,'Obteniendo Token...')
             try:
