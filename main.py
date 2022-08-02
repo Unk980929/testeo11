@@ -870,16 +870,16 @@ def onmessage(update,bot:ObigramClient):
             #    bot_token = os.environ.get('bot_token')
             #    
                 # set in debug
-            #    api_id = 7386053
-            #    api_hash = '78d1c032f3aa546ff5176d9ff0e7f341'
-            #    bot_token = '5124841893:AAH30p6ljtIzi2oPlaZwBmCfWQ1KelC6KUg'
+            #    api_id = 9520699
+            #    api_hash = '353e5b6ef2c174d0e8d7fb62e277840d'
+            #    bot_token = '5308916401:AAH9EvFeV3kpwXLjJFV2spvxJkJreYUHE5E'
 
             #    chat_id = int(update.message.chat.id)
             #    message_id = int(update.message.message_id)
             #    import asyncio
             #    asyncio.run(tlmedia.download_media(api_id,api_hash,bot_token,chat_id,message_id))
             #    return
-            bot.editMessageText(message,'😵No se pudo procesar😵')
+            bot.editMessageText(message,'⚠️Error analizyng⚠️')
     except Exception as ex:
            print(str(ex))
 
@@ -887,7 +887,7 @@ def onmessage(update,bot:ObigramClient):
 def main():
     bot_token = os.environ.get('bot_token')
     #set in debug
-    bot_token = '5350913309:AAGtZhfI9wOeboKk2oyCgg82oT6zE7UwBTw'
+    bot_token = '5308916401:AAH9EvFeV3kpwXLjJFV2spvxJkJreYUHE5E'
 
     bot = ObigramClient(bot_token)
     bot.onMessage(onmessage)
